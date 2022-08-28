@@ -13,7 +13,7 @@ _ყველაზე გონივრული მიდგომა CSS- �
     - [სელექტორები](#სელექტორები)
     - [თვისებები](#თვისებები)
   - [CSS](#css)
-    - [Formatting](#formatting)
+    - [ფორმატირება](#ფორმატირება)
     - [Comments](#comments)
     - [OOCSS and BEM](#oocss-and-bem)
     - [ID selectors](#id-selectors)
@@ -74,9 +74,10 @@ Finally, properties are what give the selected elements of a rule declaration th
 
 ## CSS
 
-### Formatting
+### ფორმატირება
 
 - Use soft tabs (2 spaces) for indentation.
+- გამოიყენეთ რბილი (_soft_) ჩანართები (2 შუალედი) ჩაღრმავებისათვის (_indentation_).
 - Prefer dashes over camelCasing in class names.
   - Underscores and PascalCasing are okay if you are using BEM (see [OOCSS and BEM](#oocss-and-bem) below).
 - Do not use ID selectors.
