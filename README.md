@@ -6,25 +6,25 @@
 
 ## სარჩევი
 
-1. [ტერმინოლოგია](#terminology)
-    - [წესის დეკლარაცია](#rule-declaration)
-    - [სელექტორები](#selectors)
-    - [თვისებები](#properties)
+1. [ტერმინოლოგია](#ტერმინოლოგია)
+    - [წესის დეკლარაცია](#წესის-დეკლარაცია)
+    - [სელექტორები](#სელექტორები)
+    - [თვისებები](#თვისებები)
 1. [CSS](#css)
-    - [ფორმატირება](#formatting)
-    - [კომენტარები](#comments)
-    - [OOCSS და BEM](#oocss-and-bem)
-    - [ID-სელექტორები](#id-selectors)
-    - [JavaScript-ჰუკები](#javascript-hooks)
-    - [თვისება „Border“](#border)
+    - [ფორმატირება](#ფორმატირება)
+    - [კომენტარები](#კომენტარები)
+    - [OOCSS და BEM](#oocss-და-bem)
+    - [ID-სელექტორები](#id-სელექტორები)
+    - [JavaScript-ჰუკები](#javascript-ჰუკები)
+    - [თვისება „Border“](#თვისება-border)
 1. [Sass](#sass)
-    - [სინტაქსი](#syntax)
-    - [თვისებათა განცხადებების (დეკლარაციების) დალაგება](#ordering-of-property-declarations)
-    - [ცვლადები](#variables)
-    - [მიქსინები (*Mixins*)](#mixins)
-    - [Extend დირექტივა](#extend-directive)
-    - [ჩადგმული (*nested*) სელექტორები](#nested-selectors)
-1. [ლიცენზია](#license)
+    - [სინტაქსი](#სინტაქსი)
+    - [მოწესრიგება](#თვისებათა-განცხადებების-დეკლარაციების-დალაგება)
+    - [ცვლადები](#ცვლადები)
+    - [მიქსინები](#მიქსინები-mixins)
+    - [Extend დირექტივა](#extend-დირექტივა)
+    - [ჩადგმული სელექტორები](#ჩადგმული-nested-სელექტორები)
+1. [ლიცენზია](#ლიცენზია)
 
 ## ტერმინოლოგია
 
@@ -63,7 +63,7 @@
 }
 ```
 
-**[⬆ ზემოთ](#table-of-contents)**
+**[⬆ ზემოთ](#სარჩევი)**
 
 ## CSS
 
@@ -199,7 +199,7 @@ function ListingCard() {
   border: 0;
 }
 ```
-**[⬆ ზემოთ](#table-of-contents)**
+**[⬆ ზემოთ](#სარჩევი)**
 
 ## Sass
 
@@ -287,7 +287,7 @@ function ListingCard() {
 
 თუ გიწევთ ID-სელექტორის გამოყენება (რასაც, კარგი იქნება, თუ თავს აარიდებთ), მათი ჩადგმა არასოდეს უნდა მოხდეს. თუ ამის აუცილებლობის წინაშე დადგებით, უმჯობესია, კიდევ ერთხელ გადახედოთ თქვენს მარკირებას (HTML-ს) და გაარკვიოთ, რამ გამოიწვია ასეთი ძლიერი კონკრეტულობის საჭიროება. თუ თქვენი HTML-ი და CSS-ი სწორად იქნება სტრუქტურირებული, ამის გაკეთების საჭიროება **არასოდეს** გექნებათ.
 
-**[⬆ ზემოთ](#table-of-contents)**
+**[⬆ ზემოთ](#სარჩევი)**
 
 ## ლიცენზია
 
@@ -301,4 +301,4 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ ზემოთ](#table-of-contents)**
+**[⬆ ზემოთ](#სარჩევი)**
