@@ -1,5 +1,5 @@
 # Airbnb CSS / Sass Styleguide
-# CSS/Sass-ის სტილისტიკის სახელმძღვანელო Airbnb-სგან
+# Airbnb: CSS/Sass-ის სტილისტიკის სახელმძღვანელო
 
 > დედანი: [Airbnb/CSS](https://github.com/airbnb/css)
 
