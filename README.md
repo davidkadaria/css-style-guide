@@ -4,7 +4,7 @@
 > დედანი: [Airbnb/CSS](https://github.com/airbnb/css)
 
 *A mostly reasonable approach to CSS and Sass*
-*ყველაზე გონივრული მიდგომა CSS- და Sass-კოდის წერისათვის*
+*ყველაზე გონივრული მიდგომა CSS-ისა და Sass-ის წერისათვის*
 
 ## Table of Contents
 ## სარჩევი
