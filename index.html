@@ -4,260 +4,262 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css" integrity="sha512-KUoB3bZ1XRBYj1QcH4BHCQjurAZnCO3WdrswyLDtp7BMwCw7dPZngSLqILf68SGgvnWHTD5pPaYrXi6wiRJ65g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Airbnb CSS / Sass სტილისტიკის სახელმძღვანელო</title>
   </head>
-  <body class="markdown-body">
-    <h1 id="airbnb-css-sass-">Airbnb CSS / Sass სტილისტიკის სახელმძღვანელო</h1>
-    <blockquote>
-      <p>დედანი: <a href="https://github.com/airbnb/css">Airbnb/CSS</a></p>
-    </blockquote>
-    <p><em>ყველაზე გონივრული მიდგომა CSS-ისა და Sass-ის წერისათვის</em></p>
-    <h2 id="-">სარჩევი</h2>
-    <ol>
-      <li>
-        <a href="#ტერმინოლოგია">ტერმინოლოგია</a>
-        <ul>
-          <li><a href="#წესის-დეკლარაცია">წესის დეკლარაცია</a></li>
-          <li><a href="#სელექტორები">სელექტორები</a></li>
-          <li><a href="#თვისებები">თვისებები</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#css">CSS</a>
-        <ul>
-          <li><a href="#ფორმატირება">ფორმატირება</a></li>
-          <li><a href="#კომენტარები">კომენტარები</a></li>
-          <li><a href="#oocss-და-bem">OOCSS და BEM</a></li>
-          <li><a href="#id-სელექტორები">ID-სელექტორები</a></li>
-          <li><a href="#javascript-ჰუკები">JavaScript-ჰუკები</a></li>
-          <li><a href="#თვისება-border">თვისება „Border“</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#sass">Sass</a>
-        <ul>
-          <li><a href="#სინტაქსი">სინტაქსი</a></li>
-          <li><a href="#თვისებათა-დეკლარაციების-დალაგება">მოწესრიგება</a></li>
-          <li><a href="#ცვლადები">ცვლადები</a></li>
-          <li><a href="#მიქსინები-mixins">მიქსინები</a></li>
-          <li><a href="#extend-დირექტივა">Extend დირექტივა</a></li>
-          <li><a href="#ჩადგმული-nested-სელექტორები">ჩადგმული სელექტორები</a></li>
-        </ul>
-      </li>
-      <li><a href="#ლიცენზია">ლიცენზია</a></li>
-    </ol>
-    <h2 id="-">ტერმინოლოგია</h2>
-    <h3 id="-">წესის დეკლარაცია</h3>
-    <p>სელექტორის (ან სელექტორთა ჯგუფის) და მისი თანმხლები თვისებების ერთობლიობას „წესის დეკლარაცია“ ეწოდება. მაგალითი:</p>
-    <pre><code class="lang-css"><span class="hljs-selector-class">.listing</span> {
-  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
-  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.2</span>;
-}
-</code></pre>
-    <h3 id="-">სელექტორები</h3>
-    <p>წესის დეკლარაციაში „სელექტორი“ არის ის ნაწილი, რომელიც განსაზღვრავს, DOM-ში შემავალი ელემენტებიდან რომლების სტილიზება უნდა მოხდეს განსაზღვრული თვისებებით. სელექტორი შეიძლება შეესაბამებოდეს HTML-ელემენტებს, ასევე ელემენტის კლასს, ID-ს ან მის (<em>ელემენტის</em>) ნებისმიერ ატრიბუტს. სელექტორთა გამოყენების მაგალითები:</p>
-    <pre><code class="lang-css"><span class="hljs-selector-class">.my-element-class</span> {
-  <span class="hljs-comment">/* ... */</span>
-}
-<span class="hljs-selector-attr">[aria-hidden]</span> {
-  <span class="hljs-comment">/* ... */</span>
-}
-</code></pre>
-    <h3 id="-">თვისებები</h3>
-    <p>დაბოლოს, თვისებები წესის დეკლარაციის ის ნაწილია, რომელიც შერჩეულ ელემენტებს სტილს ანიჭებს. თვისებათა ჩაწერა ხდება შემდეგი სახით: <code>გასაღები: მნიშვნელობა</code>. წესის დეკლარაცია შეიძლება შეიცავდეს თვისების ერთ ან მეტ დეკლარაციას. თვისებათა დეკლარაციები შემდეგნაირად გამოიყურება:</p>
-    <pre><code class="lang-css"><span class="hljs-comment">/* რაიმე სელექტორი */</span> {
-  <span class="hljs-attribute">background</span>: <span class="hljs-number">#f1f1f1</span>;
-  <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;
-}
-</code></pre>
-    <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
-    <h2 id="css">CSS</h2>
-    <h3 id="-">ფორმატირება</h3>
-    <ul>
-      <li>აბზაცებისათვის გამოიყენეთ რბილი ტაბულაცია (2 შუალედი).</li>
-      <li>
-        კლასის სახელებში, ე.წ. „კუზიანი ნოტაციის“ (<em>camelCasing</em>) ნაცვლად უმჯობესია გამოიყენოთ ტირეები.
-        <ul>
-          <li>ქვეტირეები და ე.წ. „პასკალის ნოტაცია“ (<em>PascalCasing</em>) დასაშვებია, თუკი იყენებთ BEM-ს (იხილეთ <a href="#oocss-და-bem">OOCSS და BEM</a>).</li>
-        </ul>
-      </li>
-      <li>არ გამოიყენოთ ID-სელექტორები.</li>
-      <li>როდესაც წესის დეკლარაციაში მრავალ სელექტორს იყენებთ, ყოველი სელექტორი განათავსეთ ახალ ხაზზე.</li>
-      <li>წესის დეკლარაციებში გამხსნელი <code>{</code> ფრჩხილის წინ განათავსეთ შუალედი.</li>
-      <li>თვისებებში <code>:</code> ორწერტილის შემდეგ განათავსეთ შუალედი (ორწერტილამდე — არა).</li>
-      <li>წესის დეკლარაციათა დამხურავი <code>}</code> ფრჩხილები განათავსეთ ახალ ხაზზე.</li>
-      <li>წესის დეკლარაციები ერთმანეთისაგან გამოყავით ცარიელი ხაზებით.</li>
-    </ul>
-    <p><strong>ცუდია</strong></p>
-    <pre><code class="lang-css">.avatar{
-    <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">50%</span>;
-    <span class="hljs-attribute">border</span>:<span class="hljs-number">2px</span> solid white; }
-<span class="hljs-selector-class">.no</span>, <span class="hljs-selector-class">.nope</span>, <span class="hljs-selector-class">.not_good</span> {
+  <body>
+    <main class="markdown-body">
+      <h1 id="airbnb-css-sass-">Airbnb CSS / Sass სტილისტიკის სახელმძღვანელო</h1>
+      <blockquote>
+        <p>დედანი: <a href="https://github.com/airbnb/css">Airbnb/CSS</a></p>
+      </blockquote>
+      <p><em>ყველაზე გონივრული მიდგომა CSS-ისა და Sass-ის წერისათვის</em></p>
+      <h2 id="-">სარჩევი</h2>
+      <ol>
+        <li>
+          <a href="#ტერმინოლოგია">ტერმინოლოგია</a>
+          <ul>
+            <li><a href="#წესის-დეკლარაცია">წესის დეკლარაცია</a></li>
+            <li><a href="#სელექტორები">სელექტორები</a></li>
+            <li><a href="#თვისებები">თვისებები</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#css">CSS</a>
+          <ul>
+            <li><a href="#ფორმატირება">ფორმატირება</a></li>
+            <li><a href="#კომენტარები">კომენტარები</a></li>
+            <li><a href="#oocss-და-bem">OOCSS და BEM</a></li>
+            <li><a href="#id-სელექტორები">ID-სელექტორები</a></li>
+            <li><a href="#javascript-ჰუკები">JavaScript-ჰუკები</a></li>
+            <li><a href="#თვისება-border">თვისება „Border“</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#sass">Sass</a>
+          <ul>
+            <li><a href="#სინტაქსი">სინტაქსი</a></li>
+            <li><a href="#თვისებათა-დეკლარაციების-დალაგება">მოწესრიგება</a></li>
+            <li><a href="#ცვლადები">ცვლადები</a></li>
+            <li><a href="#მიქსინები-mixins">მიქსინები</a></li>
+            <li><a href="#extend-დირექტივა">Extend დირექტივა</a></li>
+            <li><a href="#ჩადგმული-nested-სელექტორები">ჩადგმული სელექტორები</a></li>
+          </ul>
+        </li>
+        <li><a href="#ლიცენზია">ლიცენზია</a></li>
+      </ol>
+      <h2 id="-">ტერმინოლოგია</h2>
+      <h3 id="-">წესის დეკლარაცია</h3>
+      <p>სელექტორის (ან სელექტორთა ჯგუფის) და მისი თანმხლები თვისებების ერთობლიობას „წესის დეკლარაცია“ ეწოდება. მაგალითი:</p>
+      <pre><code class="lang-css"><span class="hljs-selector-class">.listing</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.2</span>;
+  }
+  </code></pre>
+      <h3 id="-">სელექტორები</h3>
+      <p>წესის დეკლარაციაში „სელექტორი“ არის ის ნაწილი, რომელიც განსაზღვრავს, DOM-ში შემავალი ელემენტებიდან რომლების სტილიზება უნდა მოხდეს განსაზღვრული თვისებებით. სელექტორი შეიძლება შეესაბამებოდეს HTML-ელემენტებს, ასევე ელემენტის კლასს, ID-ს ან მის (<em>ელემენტის</em>) ნებისმიერ ატრიბუტს. სელექტორთა გამოყენების მაგალითები:</p>
+      <pre><code class="lang-css"><span class="hljs-selector-class">.my-element-class</span> {
+    <span class="hljs-comment">/* ... */</span>
+  }
+  <span class="hljs-selector-attr">[aria-hidden]</span> {
+    <span class="hljs-comment">/* ... */</span>
+  }
+  </code></pre>
+      <h3 id="-">თვისებები</h3>
+      <p>დაბოლოს, თვისებები წესის დეკლარაციის ის ნაწილია, რომელიც შერჩეულ ელემენტებს სტილს ანიჭებს. თვისებათა ჩაწერა ხდება შემდეგი სახით: <code>გასაღები: მნიშვნელობა</code>. წესის დეკლარაცია შეიძლება შეიცავდეს თვისების ერთ ან მეტ დეკლარაციას. თვისებათა დეკლარაციები შემდეგნაირად გამოიყურება:</p>
+      <pre><code class="lang-css"><span class="hljs-comment">/* რაიმე სელექტორი */</span> {
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#f1f1f1</span>;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;
+  }
+  </code></pre>
+      <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
+      <h2 id="css">CSS</h2>
+      <h3 id="-">ფორმატირება</h3>
+      <ul>
+        <li>აბზაცებისათვის გამოიყენეთ რბილი ტაბულაცია (2 შუალედი).</li>
+        <li>
+          კლასის სახელებში, ე.წ. „კუზიანი ნოტაციის“ (<em>camelCasing</em>) ნაცვლად უმჯობესია გამოიყენოთ ტირეები.
+          <ul>
+            <li>ქვეტირეები და ე.წ. „პასკალის ნოტაცია“ (<em>PascalCasing</em>) დასაშვებია, თუკი იყენებთ BEM-ს (იხილეთ <a href="#oocss-და-bem">OOCSS და BEM</a>).</li>
+          </ul>
+        </li>
+        <li>არ გამოიყენოთ ID-სელექტორები.</li>
+        <li>როდესაც წესის დეკლარაციაში მრავალ სელექტორს იყენებთ, ყოველი სელექტორი განათავსეთ ახალ ხაზზე.</li>
+        <li>წესის დეკლარაციებში გამხსნელი <code>{</code> ფრჩხილის წინ განათავსეთ შუალედი.</li>
+        <li>თვისებებში <code>:</code> ორწერტილის შემდეგ განათავსეთ შუალედი (ორწერტილამდე — არა).</li>
+        <li>წესის დეკლარაციათა დამხურავი <code>}</code> ფრჩხილები განათავსეთ ახალ ხაზზე.</li>
+        <li>წესის დეკლარაციები ერთმანეთისაგან გამოყავით ცარიელი ხაზებით.</li>
+      </ul>
+      <p><strong>ცუდია</strong></p>
+      <pre><code class="lang-css">.avatar{
+      <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">50%</span>;
+      <span class="hljs-attribute">border</span>:<span class="hljs-number">2px</span> solid white; }
+  <span class="hljs-selector-class">.no</span>, <span class="hljs-selector-class">.nope</span>, <span class="hljs-selector-class">.not_good</span> {
+      <span class="hljs-comment">// ...</span>
+  }
+  <span class="hljs-selector-id">#lol-no</span> {
     <span class="hljs-comment">// ...</span>
-}
-<span class="hljs-selector-id">#lol-no</span> {
-  <span class="hljs-comment">// ...</span>
-}
-</code></pre>
-    <p><strong>კარგია</strong></p>
-    <pre><code class="lang-css"><span class="hljs-selector-class">.avatar</span> {
-  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
-  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid white;
-}
-<span class="hljs-selector-class">.one</span>,
-<span class="hljs-selector-class">.selector</span>,
-<span class="hljs-selector-class">.per-line</span> {
-  <span class="hljs-comment">// ...</span>
-}
-</code></pre>
-    <h3 id="-">კომენტარები</h3>
-    <ul>
-      <li>მრავალსტრიქონიანი კომენტარების ნაცვლად უმჯობესია, წეროთ ერთსტრიქონიანი კომენტარები (<code>//</code> Sass-ში).</li>
-      <li>უმჯობესია, კომენტარები განათავსოთ ცალკე ხაზზე. მოერიდეთ კომენტარების წერას კოდის სტრიქონის ბოლოში.</li>
-      <li>
-        წერეთ დეტალური კომენტარები კოდისათვის, რომელიც საკუთარ თავს გასაგებად არ აღწერს:
-        <ul>
-          <li>კოდში გამოყენებულია z-index;</li>
-          <li>კოდი შეიცავს თავსებადობისათვის ან კონკრეტული ბრაუზერისათვის განკუთვნილ „ხრიკებს“.</li>
-        </ul>
-      </li>
-    </ul>
-    <h3 id="oocss-bem">OOCSS და BEM</h3>
-    <p>ჩვენ გირჩევთ OOCSS-ისა და BEM-ის გარკვეულ კომბინაციას შემდეგი მიზეზებიდან გამომდინარე:</p>
-    <ul>
-      <li>ეს დაგეხმარებათ, შექმნათ მკაფიო, მკაცრი ურთიერთობები CSS-სა და HTML-ს შორის;</li>
-      <li>ეს დაგეხმარებათ, შექმნათ მრავალჯერადი, კომპოზიტური კომპონენტები;</li>
-      <li>ეს დაგეხმარებათ, შეამციროთ ჩადგმების რაოდენობა (<em>nesting</em>) და დასწიოთ კონკრეტიკის დონე;</li>
-      <li>ეს დაგეხმარებათ, შექმნათ სტილის მასშტაბირებადი ფურცლები (<em>stylesheets</em>).</li>
-    </ul>
-    <p><strong>OOCSS</strong>, იგივე „ობიექტზე ორიენტირებული CSS“, არის CSS-ის წერის მიდგომა, რომელიც გიბიძგებთ, იფიქროთ თქვენს სტილის ფურცლებზე (<em>stylesheets</em>), როგორც „ობიექტთა“ ერთობლიობაზე: მრავალჯერად, კოდის განმეორებად ფრაგმენტებზე, რომლებიც შესაძლებელია ხელახლა იქნეს გამოყენებული დამოუკიდებლად, ვებსაიტის მასშტაბით.</p>
-    <ul>
-      <li>Nicole Sullivan-ის <a href="https://github.com/stubbornella/oocss/wiki">OOCSS wiki</a></li>
-      <li>Smashing Magazine-ის <a href="http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/">Introduction to OOCSS</a></li>
-    </ul>
-    <p><strong>BEM</strong>, იგივე „ბლოკი-ელემენტი-მოდიფიკატორი“, არის <em>სახელდების კანონზომიერება</em> კლასებისათვის HTML-სა და CSS-ში. იგი თავდაპირველად შეიმუშავა Yandex-მა, დიდი მოცულობით კოდისა და მასშტაბურობის გათვალისწინებით. ის შეიძლება გამოგადგეთ OOCSS-ის რეალიზებისათვის, როგორც მითითებათა საფუძვლიანი ნაკრები.</p>
-    <ul>
-      <li>CSS Trick-ის <a href="https://css-tricks.com/bem-101/">BEM 101</a></li>
-      <li>Harry Roberts-ის <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">introduction to BEM</a></li>
-    </ul>
-    <p>ჩვენ გირჩევთ BEM-ის ვარიანტს „პასკალური ნოტაციის“ (<em>PascalCased</em>) „ბლოკებით“, რომელიც მეტადრე კარგად მუშაობს მაშინ, როცა კომბინირებულია კომპონენტებთან (მაგ. React). ქვეტირეები და ტირეები კვლავაც გამოიყენება მოდიფიკატორებისა და შვილობილი ელემენტებისათვის.</p>
-    <p><strong>მაგალითი</strong></p>
-    <pre><code class="lang-jsx"><span class="hljs-comment">// ListingCard.jsx</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListingCard</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard ListingCard--featured"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard__title"</span>&gt;</span>Adorable 2BR in the sunny Mission<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard__content"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Vestibulum id ligula porta felis euismod semper.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></span>
-  );
-}
-</code></pre>
-    <pre><code class="lang-css"><span class="hljs-comment">/* ListingCard.css */</span>
-<span class="hljs-selector-class">.ListingCard</span> { }
-<span class="hljs-selector-class">.ListingCard--featured</span> { }
-<span class="hljs-selector-class">.ListingCard__title</span> { }
-<span class="hljs-selector-class">.ListingCard__content</span> { }
-</code></pre>
-    <ul>
-      <li><code>.ListingCard</code> არის „ბლოკი“ და წარმოადგენს უმაღლესი დონის (<em>higher-level</em>) კომპონენტს.</li>
-      <li><code>.ListingCard__title</code> არის „ელემენტი“ და წარმოადგენს <code>.ListingCard</code>-ის შთამომავალს, რაც ბლოკის ერთ მთლიანობად ჩამოყალიბებას უწყობს ხელს.</li>
-      <li><code>.ListingCard--featured</code> არის „მოდიფიკატორი“ და ასახავს ბლოკის მდგომარეობას ან ვარიაციას.</li>
-    </ul>
-    <h3 id="id-">ID-სელექტორები</h3>
-    <p>მიუხედავად იმისა, რომ CSS-ში ელემენტების შერჩევა (სელექცია) შესაძლებელია ID-ის გამოყენებით, ზოგადად, ეს უნდა ჩაითვალოს ცუდ პრაქტიკად. ID-სელექტორებს თქვენს წესთა დეკლარაციებში შემოაქვთ <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">სპეციფიკურობის</a> ზედმეტად მაღალი დონე. ამასთან, შეუძლებელია მათი ხელახლა გამოყენება.</p>
-    <p>ამ თემასთან დაკავშირებით მეტად დეტალური ინფორმაციის მისაღებად იხილეთ შემდეგი სტატია: <a href="http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/">CSS Wizardry&#39;s article</a>.</p>
-    <h3 id="javascript-">JavaScript-ჰუკები</h3>
-    <p>მოერიდეთ ერთსა და იმავე კლასთან დაკავშირებას CSS-დან და JavaScript-დან. ამ ორის შერწყმა ხშირად იწვევს, როგორც მინიმუმ, დროის დაკარგვას რეფაქტორირებისას, რადგან დეველოპერს უწევს თითოეული კლასის მნიშვნელობის გარკვევა, ვიდრე ცვლილებას შეიტანს, ხოლო უარეს შემთხვევაში, დეველოპერი, ფუნქციონირების მოშლის შიშით, ყოყმანობს ცვლილებების შეტანას.</p>
-    <p>ჩვენ გირჩევთ, შექმნათ ცალკეული კლასები JavaScript-ისთვის <code>.js-</code> თავსართით:</p>
-    <pre><code class="lang-html">&lt;button <span class="hljs-keyword">class</span>=<span class="hljs-string">"btn btn-primary js-request-to-book"</span>&gt;<span class="hljs-built_in">Request</span> <span class="hljs-keyword">to</span> Book&lt;/button&gt;
-</code></pre>
-    <h3 id="-border-">თვისება „Border“</h3>
-    <p><code>none</code>-ის ნაცვლად გამოიყენეთ <code>0</code>, რათა მიუთითოთ, რომ სტილს არ გააჩნია კონტური (<em>border</em>).</p>
-    <p><strong>ცუდია</strong></p>
-    <pre><code class="lang-css"><span class="hljs-selector-class">.foo</span> {
-  <span class="hljs-attribute">border</span>: none;
-}
-</code></pre>
-    <p><strong>კარგია</strong></p>
-    <pre><code class="lang-css"><span class="hljs-selector-class">.foo</span> {
-  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
-}
-</code></pre>
-    <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
-    <h2 id="sass">Sass</h2>
-    <h3 id="-">სინტაქსი</h3>
-    <ul>
-      <li>გამოიყენეთ <code>.scss</code> სინტაქსი. არასოდეს გამოიყენოთ <code>.sass</code> სინტაქსი.</li>
-      <li>დაალაგეთ რეგულარული CSS-ი და <code>@include</code> დეკლარაციები ლოგიკურად (იხ. ქვემოთ).</li>
-    </ul>
-    <h3 id="-">თვისებათა დეკლარაციების დალაგება</h3>
-    <ol>
-      <li>
-        <p>თვისებათა დეკლარაციები</p>
-        <p> ჩამოთვალეთ ყოველი სტანდარტული თვისებათა დეკლარაცია, ყველაფერი, რაც არ არის <code>@include</code> ან ჩადგმული სელექტორი.</p>
-        <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn-green</span> {
-   <span class="hljs-attribute">background</span>: green;
-   <span class="hljs-attribute">font-weight</span>: bold;
-   <span class="hljs-comment">// ...</span>
- }
-</code></pre>
-      </li>
-      <li>
-        <p><code>@include</code> დეკლარაციები</p>
-        <p> <code>@include</code>-ების ბოლოში განთავსება ამარტივებს მთლიანი სელექტორის წაკითხვას.</p>
-        <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn-green</span> {
-   <span class="hljs-attribute">background</span>: green;
-   <span class="hljs-attribute">font-weight</span>: bold;
-   @<span class="hljs-keyword">include</span> transition(background 0.5s ease);
-   <span class="hljs-comment">// ...</span>
- }
-</code></pre>
-      </li>
-      <li>
-        <p>ჩადგმული (<em>nested</em>) სელექტორები</p>
-        <p> ჩადგმული სელექტორები (<em>მათი გამოყენების საჭიროების შემთხვევაში</em>) თავსდება ბოლოში, მათ შემდეგ კი არაფერი უნდა განთავსდეს. დაამატეთ ცარიელი სტრიქონი წესის დეკლარაციებსა და ჩადგმულ სელექტორებს შორის, ასევე მომიჯნავე ჩადგმულ სელექტორებს შორის. ჩადგმული სელექტორებისათვის გამოიყენეთ იგივე ინსტრუქციები, რომლებიც ზემოთ არის მოცემული.</p>
-        <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn</span> {
-   <span class="hljs-attribute">background</span>: green;
-   <span class="hljs-attribute">font-weight</span>: bold;
-   @include <span class="hljs-attribute">transition</span>(background <span class="hljs-number">0.5s</span> ease);
-   <span class="hljs-selector-class">.icon</span> {
-     <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">10px</span>;
+  }
+  </code></pre>
+      <p><strong>კარგია</strong></p>
+      <pre><code class="lang-css"><span class="hljs-selector-class">.avatar</span> {
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid white;
+  }
+  <span class="hljs-selector-class">.one</span>,
+  <span class="hljs-selector-class">.selector</span>,
+  <span class="hljs-selector-class">.per-line</span> {
+    <span class="hljs-comment">// ...</span>
+  }
+  </code></pre>
+      <h3 id="-">კომენტარები</h3>
+      <ul>
+        <li>მრავალსტრიქონიანი კომენტარების ნაცვლად უმჯობესია, წეროთ ერთსტრიქონიანი კომენტარები (<code>//</code> Sass-ში).</li>
+        <li>უმჯობესია, კომენტარები განათავსოთ ცალკე ხაზზე. მოერიდეთ კომენტარების წერას კოდის სტრიქონის ბოლოში.</li>
+        <li>
+          წერეთ დეტალური კომენტარები კოდისათვის, რომელიც საკუთარ თავს გასაგებად არ აღწერს:
+          <ul>
+            <li>კოდში გამოყენებულია z-index;</li>
+            <li>კოდი შეიცავს თავსებადობისათვის ან კონკრეტული ბრაუზერისათვის განკუთვნილ „ხრიკებს“.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3 id="oocss-bem">OOCSS და BEM</h3>
+      <p>ჩვენ გირჩევთ OOCSS-ისა და BEM-ის გარკვეულ კომბინაციას შემდეგი მიზეზებიდან გამომდინარე:</p>
+      <ul>
+        <li>ეს დაგეხმარებათ, შექმნათ მკაფიო, მკაცრი ურთიერთობები CSS-სა და HTML-ს შორის;</li>
+        <li>ეს დაგეხმარებათ, შექმნათ მრავალჯერადი, კომპოზიტური კომპონენტები;</li>
+        <li>ეს დაგეხმარებათ, შეამციროთ ჩადგმების რაოდენობა (<em>nesting</em>) და დასწიოთ კონკრეტიკის დონე;</li>
+        <li>ეს დაგეხმარებათ, შექმნათ სტილის მასშტაბირებადი ფურცლები (<em>stylesheets</em>).</li>
+      </ul>
+      <p><strong>OOCSS</strong>, იგივე „ობიექტზე ორიენტირებული CSS“, არის CSS-ის წერის მიდგომა, რომელიც გიბიძგებთ, იფიქროთ თქვენს სტილის ფურცლებზე (<em>stylesheets</em>), როგორც „ობიექტთა“ ერთობლიობაზე: მრავალჯერად, კოდის განმეორებად ფრაგმენტებზე, რომლებიც შესაძლებელია ხელახლა იქნეს გამოყენებული დამოუკიდებლად, ვებსაიტის მასშტაბით.</p>
+      <ul>
+        <li>Nicole Sullivan-ის <a href="https://github.com/stubbornella/oocss/wiki">OOCSS wiki</a></li>
+        <li>Smashing Magazine-ის <a href="http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/">Introduction to OOCSS</a></li>
+      </ul>
+      <p><strong>BEM</strong>, იგივე „ბლოკი-ელემენტი-მოდიფიკატორი“, არის <em>სახელდების კანონზომიერება</em> კლასებისათვის HTML-სა და CSS-ში. იგი თავდაპირველად შეიმუშავა Yandex-მა, დიდი მოცულობით კოდისა და მასშტაბურობის გათვალისწინებით. ის შეიძლება გამოგადგეთ OOCSS-ის რეალიზებისათვის, როგორც მითითებათა საფუძვლიანი ნაკრები.</p>
+      <ul>
+        <li>CSS Trick-ის <a href="https://css-tricks.com/bem-101/">BEM 101</a></li>
+        <li>Harry Roberts-ის <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">introduction to BEM</a></li>
+      </ul>
+      <p>ჩვენ გირჩევთ BEM-ის ვარიანტს „პასკალური ნოტაციის“ (<em>PascalCased</em>) „ბლოკებით“, რომელიც მეტადრე კარგად მუშაობს მაშინ, როცა კომბინირებულია კომპონენტებთან (მაგ. React). ქვეტირეები და ტირეები კვლავაც გამოიყენება მოდიფიკატორებისა და შვილობილი ელემენტებისათვის.</p>
+      <p><strong>მაგალითი</strong></p>
+      <pre><code class="lang-jsx"><span class="hljs-comment">// ListingCard.jsx</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListingCard</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard ListingCard--featured"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard__title"</span>&gt;</span>Adorable 2BR in the sunny Mission<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ListingCard__content"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Vestibulum id ligula porta felis euismod semper.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></span>
+    );
+  }
+  </code></pre>
+      <pre><code class="lang-css"><span class="hljs-comment">/* ListingCard.css */</span>
+  <span class="hljs-selector-class">.ListingCard</span> { }
+  <span class="hljs-selector-class">.ListingCard--featured</span> { }
+  <span class="hljs-selector-class">.ListingCard__title</span> { }
+  <span class="hljs-selector-class">.ListingCard__content</span> { }
+  </code></pre>
+      <ul>
+        <li><code>.ListingCard</code> არის „ბლოკი“ და წარმოადგენს უმაღლესი დონის (<em>higher-level</em>) კომპონენტს.</li>
+        <li><code>.ListingCard__title</code> არის „ელემენტი“ და წარმოადგენს <code>.ListingCard</code>-ის შთამომავალს, რაც ბლოკის ერთ მთლიანობად ჩამოყალიბებას უწყობს ხელს.</li>
+        <li><code>.ListingCard--featured</code> არის „მოდიფიკატორი“ და ასახავს ბლოკის მდგომარეობას ან ვარიაციას.</li>
+      </ul>
+      <h3 id="id-">ID-სელექტორები</h3>
+      <p>მიუხედავად იმისა, რომ CSS-ში ელემენტების შერჩევა (სელექცია) შესაძლებელია ID-ის გამოყენებით, ზოგადად, ეს უნდა ჩაითვალოს ცუდ პრაქტიკად. ID-სელექტორებს თქვენს წესთა დეკლარაციებში შემოაქვთ <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">სპეციფიკურობის</a> ზედმეტად მაღალი დონე. ამასთან, შეუძლებელია მათი ხელახლა გამოყენება.</p>
+      <p>ამ თემასთან დაკავშირებით მეტად დეტალური ინფორმაციის მისაღებად იხილეთ შემდეგი სტატია: <a href="http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/">CSS Wizardry&#39;s article</a>.</p>
+      <h3 id="javascript-">JavaScript-ჰუკები</h3>
+      <p>მოერიდეთ ერთსა და იმავე კლასთან დაკავშირებას CSS-დან და JavaScript-დან. ამ ორის შერწყმა ხშირად იწვევს, როგორც მინიმუმ, დროის დაკარგვას რეფაქტორირებისას, რადგან დეველოპერს უწევს თითოეული კლასის მნიშვნელობის გარკვევა, ვიდრე ცვლილებას შეიტანს, ხოლო უარეს შემთხვევაში, დეველოპერი, ფუნქციონირების მოშლის შიშით, ყოყმანობს ცვლილებების შეტანას.</p>
+      <p>ჩვენ გირჩევთ, შექმნათ ცალკეული კლასები JavaScript-ისთვის <code>.js-</code> თავსართით:</p>
+      <pre><code class="lang-html">&lt;button <span class="hljs-keyword">class</span>=<span class="hljs-string">"btn btn-primary js-request-to-book"</span>&gt;<span class="hljs-built_in">Request</span> <span class="hljs-keyword">to</span> Book&lt;/button&gt;
+  </code></pre>
+      <h3 id="-border-">თვისება „Border“</h3>
+      <p><code>none</code>-ის ნაცვლად გამოიყენეთ <code>0</code>, რათა მიუთითოთ, რომ სტილს არ გააჩნია კონტური (<em>border</em>).</p>
+      <p><strong>ცუდია</strong></p>
+      <pre><code class="lang-css"><span class="hljs-selector-class">.foo</span> {
+    <span class="hljs-attribute">border</span>: none;
+  }
+  </code></pre>
+      <p><strong>კარგია</strong></p>
+      <pre><code class="lang-css"><span class="hljs-selector-class">.foo</span> {
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
+  }
+  </code></pre>
+      <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
+      <h2 id="sass">Sass</h2>
+      <h3 id="-">სინტაქსი</h3>
+      <ul>
+        <li>გამოიყენეთ <code>.scss</code> სინტაქსი. არასოდეს გამოიყენოთ <code>.sass</code> სინტაქსი.</li>
+        <li>დაალაგეთ რეგულარული CSS-ი და <code>@include</code> დეკლარაციები ლოგიკურად (იხ. ქვემოთ).</li>
+      </ul>
+      <h3 id="-">თვისებათა დეკლარაციების დალაგება</h3>
+      <ol>
+        <li>
+          <p>თვისებათა დეკლარაციები</p>
+          <p> ჩამოთვალეთ ყოველი სტანდარტული თვისებათა დეკლარაცია, ყველაფერი, რაც არ არის <code>@include</code> ან ჩადგმული სელექტორი.</p>
+          <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn-green</span> {
+     <span class="hljs-attribute">background</span>: green;
+     <span class="hljs-attribute">font-weight</span>: bold;
+     <span class="hljs-comment">// ...</span>
    }
- }
-</code></pre>
-      </li>
-    </ol>
-    <h3 id="-">ცვლადები</h3>
-    <p>უმჯობესია, ცვლადის სახელები ჩაწეროთ ტირეების გამოყენებით (მაგ. <code>$my-variable</code>), მათი „კუზიანი ნოტაციის“ (<em>camelCased</em>) ან ქვეტირეს (<em>snake_cased</em>) გამოყენებით ჩაწერის ნაცვლად. დასაშვებია ქვეტირეს თავსართად გამოყენება (მაგ. <code>$_my-variable</code>) ისეთი ცვლადების ჩასაწერად, რომელთა გამოყენებაც გათვალისწინებულია მხოლოდ იმავე ფაილის მასშტაბით.</p>
-    <h3 id="-mixins-">მიქსინები (<em>Mixins</em>)</h3>
-    <p>მიქსინების გამოყენება უნდა მოხდეს კოდისათვის სიცხადის ან აბსტრაქტული სირთულის შესამატებლად (დაახლოებით იმავენაირად, როგორც ფუნქციებისათვის სახელების სწორად შერჩევისას). მიქსინები, რომლებიც არ იღებს არგუმენტებს, შეიძლება გამოდგეს ამისთვის, მაგრამ გაითვალისწინეთ, რომ თუ თქვენს ფაილს არ შეკუმშავთ (მაგ. gzip), ამან შეიძლება ხელი შეუწყოს კოდის გაუთვალისწინებელ გამეორებას (<em>დუბლიკაციას</em>).</p>
-    <h3 id="extend-">Extend დირექტივა</h3>
-    <p><code>@extend</code>-ის გამოყენებას უნდა მოერიდოთ, რადგან მას ახასიათებს არაინტუიციური და პოტენციურად საშიში ქცევა, განსაკუთრებით მაშინ, როცა ჩადგმულ სელექტორებთან გამოიყენება. ზედა დონის შემავსებელმა (<em>placeholder</em>) სელექტორებმაც კი შეიძლება გამოიწვიოს პრობლემები, თუკი სელექტორთა თანმიმდევრობა მოგვიანებით შეიცვლება (მაგ. თუ ისინი განთავსებულია ცალკეულ ფაილებში და ფაილთა ჩატვირთვის თანმიმდევრობა შეიცვლება). შეკუმშვამ (<em>Gzipping</em>) უნდა აანაზღაუროს იმ უპირატესობათა უმეტესობა, რომლებსაც მიიღებდით <code>@extend</code>-ის გამოყენების შემთხვევაში, ხოლო კოდისათვის სიცხადის შემატებისათვის მიქსინები მშვენიერი საშუალებაა.</p>
-    <h3 id="-nested-">ჩადგმული (<em>nested</em>) სელექტორები</h3>
-    <p><strong>სელექტორთა ჩადგმის სიღრმე არ უნდა აღემატებოდეს სამს!</strong></p>
-    <pre><code class="lang-scss"><span class="hljs-selector-class">.page-container</span> {
-  <span class="hljs-selector-class">.content</span> {
-    <span class="hljs-selector-class">.profile</span> {
-      <span class="hljs-comment">// შეჩერდით!</span>
+  </code></pre>
+        </li>
+        <li>
+          <p><code>@include</code> დეკლარაციები</p>
+          <p> <code>@include</code>-ების ბოლოში განთავსება ამარტივებს მთლიანი სელექტორის წაკითხვას.</p>
+          <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn-green</span> {
+     <span class="hljs-attribute">background</span>: green;
+     <span class="hljs-attribute">font-weight</span>: bold;
+     @<span class="hljs-keyword">include</span> transition(background 0.5s ease);
+     <span class="hljs-comment">// ...</span>
+   }
+  </code></pre>
+        </li>
+        <li>
+          <p>ჩადგმული (<em>nested</em>) სელექტორები</p>
+          <p> ჩადგმული სელექტორები (<em>მათი გამოყენების საჭიროების შემთხვევაში</em>) თავსდება ბოლოში, მათ შემდეგ კი არაფერი უნდა განთავსდეს. დაამატეთ ცარიელი სტრიქონი წესის დეკლარაციებსა და ჩადგმულ სელექტორებს შორის, ასევე მომიჯნავე ჩადგმულ სელექტორებს შორის. ჩადგმული სელექტორებისათვის გამოიყენეთ იგივე ინსტრუქციები, რომლებიც ზემოთ არის მოცემული.</p>
+          <pre><code class="lang-scss"> <span class="hljs-selector-class">.btn</span> {
+     <span class="hljs-attribute">background</span>: green;
+     <span class="hljs-attribute">font-weight</span>: bold;
+     @include <span class="hljs-attribute">transition</span>(background <span class="hljs-number">0.5s</span> ease);
+     <span class="hljs-selector-class">.icon</span> {
+       <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">10px</span>;
+     }
+   }
+  </code></pre>
+        </li>
+      </ol>
+      <h3 id="-">ცვლადები</h3>
+      <p>უმჯობესია, ცვლადის სახელები ჩაწეროთ ტირეების გამოყენებით (მაგ. <code>$my-variable</code>), მათი „კუზიანი ნოტაციის“ (<em>camelCased</em>) ან ქვეტირეს (<em>snake_cased</em>) გამოყენებით ჩაწერის ნაცვლად. დასაშვებია ქვეტირეს თავსართად გამოყენება (მაგ. <code>$_my-variable</code>) ისეთი ცვლადების ჩასაწერად, რომელთა გამოყენებაც გათვალისწინებულია მხოლოდ იმავე ფაილის მასშტაბით.</p>
+      <h3 id="-mixins-">მიქსინები (<em>Mixins</em>)</h3>
+      <p>მიქსინების გამოყენება უნდა მოხდეს კოდისათვის სიცხადის ან აბსტრაქტული სირთულის შესამატებლად (დაახლოებით იმავენაირად, როგორც ფუნქციებისათვის სახელების სწორად შერჩევისას). მიქსინები, რომლებიც არ იღებს არგუმენტებს, შეიძლება გამოდგეს ამისთვის, მაგრამ გაითვალისწინეთ, რომ თუ თქვენს ფაილს არ შეკუმშავთ (მაგ. gzip), ამან შეიძლება ხელი შეუწყოს კოდის გაუთვალისწინებელ გამეორებას (<em>დუბლიკაციას</em>).</p>
+      <h3 id="extend-">Extend დირექტივა</h3>
+      <p><code>@extend</code>-ის გამოყენებას უნდა მოერიდოთ, რადგან მას ახასიათებს არაინტუიციური და პოტენციურად საშიში ქცევა, განსაკუთრებით მაშინ, როცა ჩადგმულ სელექტორებთან გამოიყენება. ზედა დონის შემავსებელმა (<em>placeholder</em>) სელექტორებმაც კი შეიძლება გამოიწვიოს პრობლემები, თუკი სელექტორთა თანმიმდევრობა მოგვიანებით შეიცვლება (მაგ. თუ ისინი განთავსებულია ცალკეულ ფაილებში და ფაილთა ჩატვირთვის თანმიმდევრობა შეიცვლება). შეკუმშვამ (<em>Gzipping</em>) უნდა აანაზღაუროს იმ უპირატესობათა უმეტესობა, რომლებსაც მიიღებდით <code>@extend</code>-ის გამოყენების შემთხვევაში, ხოლო კოდისათვის სიცხადის შემატებისათვის მიქსინები მშვენიერი საშუალებაა.</p>
+      <h3 id="-nested-">ჩადგმული (<em>nested</em>) სელექტორები</h3>
+      <p><strong>სელექტორთა ჩადგმის სიღრმე არ უნდა აღემატებოდეს სამს!</strong></p>
+      <pre><code class="lang-scss"><span class="hljs-selector-class">.page-container</span> {
+    <span class="hljs-selector-class">.content</span> {
+      <span class="hljs-selector-class">.profile</span> {
+        <span class="hljs-comment">// შეჩერდით!</span>
+      }
     }
   }
-}
-</code></pre>
-    <p>როდესაც სელექტორები ამ სიგრძის ხდება, სავარაუდოდ, თქვენ მიერ დაწერილი CSS-ი:</p>
-    <ul>
-      <li>მტკიცედ არის დაკავშირებული HTML-თან (მყიფე); <em>—ან—</em></li>
-      <li>მეტისმეტად კონკრეტულია; <em>—ან—</em></li>
-      <li>არ არის ხელახლა გამოყენებადი.</li>
-    </ul>
-    <p>კიდევ ერთხელ: <strong>არასოდეს მოახდინოთ ID-სელექტორების ჩადგმა (<em>nesting</em>)!</strong></p>
-    <p>თუ გიწევთ ID-სელექტორის გამოყენება (რასაც, კარგი იქნება, თუ თავს აარიდებთ), მათი ჩადგმა არასოდეს უნდა მოხდეს. თუ ამის აუცილებლობის წინაშე დადგებით, უმჯობესია, კიდევ ერთხელ გადახედოთ თქვენს მარკირებას (HTML-ს) და გაარკვიოთ, რამ გამოიწვია ასეთი ძლიერი კონკრეტულობის საჭიროება. თუ თქვენი HTML-ი და CSS-ი სწორად იქნება სტრუქტურირებული, ამის გაკეთების საჭიროება <strong>არასოდეს</strong> გექნებათ.</p>
-    <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
-    <h2 id="-">ლიცენზია</h2>
-    <p>(The MIT License)</p>
-    <p>Copyright (c) 2015 Airbnb</p>
-    <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#39;Software&#39;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-    <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-    <p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-    <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
+  </code></pre>
+      <p>როდესაც სელექტორები ამ სიგრძის ხდება, სავარაუდოდ, თქვენ მიერ დაწერილი CSS-ი:</p>
+      <ul>
+        <li>მტკიცედ არის დაკავშირებული HTML-თან (მყიფე); <em>—ან—</em></li>
+        <li>მეტისმეტად კონკრეტულია; <em>—ან—</em></li>
+        <li>არ არის ხელახლა გამოყენებადი.</li>
+      </ul>
+      <p>კიდევ ერთხელ: <strong>არასოდეს მოახდინოთ ID-სელექტორების ჩადგმა (<em>nesting</em>)!</strong></p>
+      <p>თუ გიწევთ ID-სელექტორის გამოყენება (რასაც, კარგი იქნება, თუ თავს აარიდებთ), მათი ჩადგმა არასოდეს უნდა მოხდეს. თუ ამის აუცილებლობის წინაშე დადგებით, უმჯობესია, კიდევ ერთხელ გადახედოთ თქვენს მარკირებას (HTML-ს) და გაარკვიოთ, რამ გამოიწვია ასეთი ძლიერი კონკრეტულობის საჭიროება. თუ თქვენი HTML-ი და CSS-ი სწორად იქნება სტრუქტურირებული, ამის გაკეთების საჭიროება <strong>არასოდეს</strong> გექნებათ.</p>
+      <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
+      <h2 id="-">ლიცენზია</h2>
+      <p>(The MIT License)</p>
+      <p>Copyright (c) 2015 Airbnb</p>
+      <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#39;Software&#39;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+      <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+      <p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      <p><strong><a href="#სარჩევი">⬆ ზემოთ</a></strong></p>
+    </main>
   </body>
 </html>
