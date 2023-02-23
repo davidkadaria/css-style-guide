@@ -70,7 +70,7 @@
 ### ფორმატირება
 
 * აბზაცებისათვის გამოიყენეთ რბილი ტაბულაცია (2 შუალედი).
-* კლასის სახელებში, ე.წ. „კუზიანი ნოტაციის“ (*camelCasing*) ნაცვლად უმჯობესია გამოიყენოთ ტირეები.
+* კლასის სახელებში, ე.წ. „კუზიანი ნოტაციის“[^1] ნაცვლად უმჯობესია გამოიყენოთ ტირეები.
   - ქვეტირეები და ე.წ. „პასკალის ნოტაცია“ (*PascalCasing*) დასაშვებია, თუკი იყენებთ BEM-ს (იხილეთ [OOCSS და BEM](#oocss-და-bem)).
 * არ გამოიყენოთ ID-სელექტორები.
 * როდესაც წესის დეკლარაციაში მრავალ სელექტორს იყენებთ, ყოველი სელექტორი განათავსეთ ახალ ხაზზე.
@@ -302,3 +302,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **[⬆ ზემოთ](#სარჩევი)**
+
+[^1]:
+  რამდენიმე სიტყვის გადაბმულად დაწერა იმგვარად, რომ ყოველი სიტყვა, გარდა პირველისა, დიდი ასოთი იწყებოდეს, მაგ.: exampleOfCamelCase;
+  (ინგლ. Camel case)
