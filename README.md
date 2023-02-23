@@ -304,5 +304,5 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 **[⬆ ზემოთ](#სარჩევი)**
 
 [^1]:
-  რამდენიმე სიტყვის გადაბმულად დაწერა იმგვარად, რომ ყოველი სიტყვა, გარდა პირველისა, დიდი ასოთი იწყებოდეს, მაგ.: exampleOfCamelCase;
-  (ინგლ. Camel case)
+    რამდენიმე სიტყვის გადაბმულად დაწერა იმგვარად, რომ ყოველი სიტყვა, გარდა პირველისა, დიდი ასოთი იწყებოდეს, მაგ.: exampleOfCamelCase;
+    (ინგლ. Camel case)
